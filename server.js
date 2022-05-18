@@ -11,12 +11,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
 
-app.post('/loginUsuario', async(req, res) => {
+app.post({path:'/loginUsuario', headers: {
+    'Content-Type': 'application/json'
+  },}, async(req, res) => {
     await db.login_user(req, res)
 })
-app.post('/cadastrarUsuario', async(req, res) =>{
+app.post({path:'/cadastrarUsuario', headers: {
+    'Content-Type': 'application/json'
+  },}, async(req, res) =>{
     await db.create_user(req, res)
 })
+
  
 
 app.listen(port, () =>{
